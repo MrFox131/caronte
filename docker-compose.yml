@@ -1,6 +1,11 @@
 version: "3.7"
 services:
-
+  watcher:
+    build: ./package_sender
+    network_mode: "host"
+    restart: always
+    env_file:
+      - ./package_sender/.env
   mongo:
     image: mongo:4.4
     networks:

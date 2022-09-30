@@ -1,0 +1,9 @@
+version: "3"
+
+services:
+  watcher:
+    build: .
+    network_mode: "host"
+    restart: always
+    env_file:
+      - .env
