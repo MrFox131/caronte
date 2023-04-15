@@ -1,11 +1,5 @@
 version: "3.7"
 services:
-  watcher:
-    build: ./package_sender
-    network_mode: "host"
-    restart: always
-    env_file:
-      - ./package_sender/.env
   mongo:
     image: mongo:4.4
     networks:
@@ -13,7 +7,8 @@ services:
     restart: unless-stopped
 
   caronte:
-    image: ghcr.io/eciavatta/caronte:latest
+#    image: ghcr.io/eciavatta/caronte:latest
+    build: .
     ports:
       - "3333:3333"
     environment:

@@ -75,6 +75,14 @@ func CreateApplicationRouter(applicationContext *ApplicationContext,
 		}
 	})
 
+	router.GET("/health", func(c *gin.Context) {
+		if applicationContext.IsConfigured {
+			success(c, "ready")
+		} else {
+			success(c, "setup required")
+		}
+	})
+
 	api := router.Group("/api")
 	api.Use(SetupRequiredMiddleware(applicationContext))
 	api.Use(AuthRequiredMiddleware(applicationContext))
